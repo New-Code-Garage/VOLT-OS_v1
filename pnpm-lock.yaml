@@ -7,10 +7,17 @@ settings:
 importers:
 
   .:
+    dependencies:
+      pino:
+        specifier: ^9.14.0
+        version: 9.14.0
     devDependencies:
       '@types/node':
         specifier: ^22.20.0
         version: 22.20.0
+      '@vitest/coverage-v8':
+        specifier: 2.1.9
+        version: 2.1.9(vitest@2.1.9(@types/node@22.20.0))
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -53,6 +60,31 @@ importers:
         version: 5.9.3
 
   packages/memory-engine:
+    dependencies:
+      '@volt-os/config':
+        specifier: workspace:*
+        version: link:../config
+      '@volt-os/event-bus':
+        specifier: workspace:*
+        version: link:../event-bus
+      '@volt-os/shared':
+        specifier: workspace:*
+        version: link:../shared
+      pino:
+        specifier: ^9.0.0
+        version: 9.14.0
+    devDependencies:
+      '@types/node':
+        specifier: ^22.20.0
+        version: 22.20.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.9
+        version: 2.1.9(@types/node@22.20.0)
+
+  packages/model-router:
     dependencies:
       '@volt-os/config':
         specifier: workspace:*

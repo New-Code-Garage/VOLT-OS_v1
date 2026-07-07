@@ -1,0 +1,33 @@
+{
+  "name": "@volt-os/model-router",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VOLT OS — Model routing subsystem with provider scoring, failover, budget controls, and streaming",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@volt-os/shared": "workspace:*",
+    "@volt-os/config": "workspace:*",
+    "@volt-os/event-bus": "workspace:*",
+    "pino": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.0",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  }
+}
