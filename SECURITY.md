@@ -1,46 +1,65 @@
-# Security Policy
+# SECURITY.md — VOLT OS
+
+---
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within VOLT OS, please send an email to security@volt-os.dev. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability, please report it responsibly.
 
-**Please do NOT report security vulnerabilities through public GitHub issues.**
+**DO NOT** open a public GitHub issue for security vulnerabilities.
 
-## Disclosure Policy
+### Contact
 
-When the security team receives a security bug report, it will be assigned to a primary handler. This person will coordinate the fix and release process:
+Email: security@volt-os.dev (or create a private security advisory on GitHub)
 
-1. Confirm the problem and determine the affected versions
-2. Audit code to find any potential similar problems
-3. Prepare fixes for all releases still under maintenance
-4. Release new versions
-5. Publish a security advisory on GitHub
+### What to Include
 
-## Security Considerations
+- Description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Suggested fix (if any)
 
-### Agent Security
-- Agents run in sandboxed environments with limited permissions
-- All agent actions are logged and auditable
-- Agent memory is isolated per-agent
+### Response Time
 
-### Model Router Security
-- API keys are encrypted at rest using envelope encryption (KMS)
-- Keys are never stored in environment variables or source code
-- All model provider communication uses TLS
+- Acknowledgment: 24 hours
+- Initial assessment: 72 hours
+- Resolution: 30 days (depending on severity)
 
-### Plugin Security
-- Plugins run in worker thread sandboxes
-- Plugin permissions are declared and enforced at runtime
-- Plugin code is scanned for known vulnerabilities before activation
+---
 
-### Pipeline Security
-- Human approval gates are required for critical actions
-- All pipeline actions are logged in the audit trail
-- Audit log uses hash chaining for tamper protection
+## Security Measures
 
-## Supported Versions
+### Authentication
+- JWT-based authentication
+- API key support
+- Service account support
 
-| Version | Supported |
-|---|---|
-| 0.1.x (alpha) | ✅ Active development |
-| < 0.1 | ❌ Not supported |
+### Authorization
+- Role-based access control (RBAC)
+- Default-deny policy
+- Permission-based resource access
+
+### Data Protection
+- AES-256 encryption at rest
+- TLS encryption in transit
+- Secrets never logged
+
+### Supply Chain
+- Dependency scanning
+- License compliance
+- Integrity verification
+
+---
+
+## Scope
+
+This security policy applies to:
+- VOLT OS core platform
+- Official SDK
+- Mission Control
+- Documentation
+
+Out of scope:
+- Third-party plugins
+- Custom deployments
+- User-generated content
