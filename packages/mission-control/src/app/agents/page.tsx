@@ -90,7 +90,7 @@ export default function AgentsPage() {
           ) : (
             <div className="bg-card border border-border rounded-md">
               <DataTable
-                columns={columns}
+                columns={columns as any}
                 data={
                   agents as unknown as Record<string, unknown>[]
                 }

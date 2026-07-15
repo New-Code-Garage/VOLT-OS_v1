@@ -29,8 +29,10 @@ export function useWebSocket(): UseWebSocketReturn {
   const isConnectedRef = useRef(false);
   const errorRef = useRef<string | null>(null);
 
-  // We use a force-render hook so React re-renders when connection state changes
-  const [, forceRender] = useRef<number>(0);
+  const forceRenderRef = useRef<number>(0);
+  const forceRender = () => {
+    forceRenderRef.current += 1;
+  };
 
   const cleanup = useCallback(() => {
     if (wsRef.current) {
@@ -67,7 +69,7 @@ export function useWebSocket(): UseWebSocketReturn {
         errorRef.current = null;
         reconnectAttemptRef.current = 0;
         // Trigger re-render
-        forceRender((prev) => prev + 1);
+        forceRender();
       };
 
       ws.onmessage = (message) => {
@@ -83,20 +85,20 @@ export function useWebSocket(): UseWebSocketReturn {
       ws.onclose = () => {
         if (!mountedRef.current) return;
         isConnectedRef.current = false;
-        forceRender((prev) => prev + 1);
+        forceRender();
         scheduleReconnect();
       };
 
       ws.onerror = () => {
         if (!mountedRef.current) return;
         errorRef.current = 'WebSocket connection error';
-        forceRender((prev) => prev + 1);
+        forceRender();
         ws.close();
       };
     } catch {
       if (!mountedRef.current) return;
       errorRef.current = 'Failed to create WebSocket';
-      forceRender((prev) => prev + 1);
+      forceRender();
       scheduleReconnect();
     }
   }, [addEvent, cleanup]);
